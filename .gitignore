@@ -16,3 +16,10 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+do-release.sh
+
+release/
+qemu-base/
+jenkins/
+automation/
