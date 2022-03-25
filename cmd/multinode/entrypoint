@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/ash
 set -euo pipefail
 
 if [[ ! -f "/app/config/config.yaml" ]]; then
