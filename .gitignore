@@ -17,9 +17,19 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
+#To-Do : add to repo once testing complete
+
+#Release and build script
 do-release.sh
 
+#Release folder
 release/
+
+#Qemu image for emulated architecture build ARM32 & ARM64
 qemu-base/
+
+#Temporary Jenkins files from build
 jenkins/
+
+#automation build scripts
 automation/
