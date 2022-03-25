@@ -1,0 +1,7 @@
+git checkout released version i.e git checkout v1.50.4
+
+execute the tag script and increment by 1 minor version
+
+/scripts/tag-release.sh v1.50.5  <---- point release
+
+run the build to generate version information
