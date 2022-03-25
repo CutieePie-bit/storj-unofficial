@@ -1,10 +1,10 @@
 ARG DOCKER_ARCH
 
 # Fetch ca-certificates file for arch independent builds below
-FROM alpine as ca-cert
+FROM alpine:3.13 as ca-cert
 RUN apk -U add ca-certificates
 
-FROM ${DOCKER_ARCH:-amd64}/alpine
+FROM ${DOCKER_ARCH:-amd64}/alpine:3.13
 ARG TAG
 ARG GOARCH
 ENV GOARCH ${GOARCH}
