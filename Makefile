@@ -19,7 +19,7 @@ endif
 CUSTOMTAG ?=
 JENKINS_DOCKER_NAMESPACE := jenkins/docker_namespace
 DOCKER_NAMESPACE := $(shell cat ${JENKINS_DOCKER_NAMESPACE})
-DOCKER_EXT := -unofficial01
+DOCKER_EXT := -unofficial
 
 FILEEXT :=
 ifeq (${GOOS},windows)
@@ -28,8 +28,8 @@ endif
 
 #--------GitRepo for pull images
 GIT_REPO := "storj/storj"
-LATEST_RELEASE := v1.52.2
-#LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
+#LATEST_RELEASE := v1.52.2
+LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
     		grep '"tag_name":' | \
     		sed -E 's/.*"([^"]+)".*/\1/' \
 	  )
