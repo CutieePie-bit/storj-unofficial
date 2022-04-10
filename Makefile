@@ -70,10 +70,16 @@ else
 	mkdir -p releases
 	mkdir -p releases/$(LATEST_RELEASE)
 
-	$(info ++ pulling binarys)
+	$(info ++ pulling binarys for storagenode)
 	for c in arm arm64 amd64 ; do \
 		wget -q -O /tmp/tmp.zip https://github.com/storj/storj/releases/download/$(LATEST_RELEASE)/storagenode_linux_$$c.zip && unzip -o /tmp/tmp.zip -d releases/$(LATEST_RELEASE)/$$c && rm /tmp/tmp.zip \
 	; done
+
+	$(info ++ pulling binarys for multinode)
+	for c in arm arm64 amd64 ; do \
+		wget -q -O /tmp/tmp.zip https://github.com/storj/storj/releases/download/$(LATEST_RELEASE)/multinode_linux_$$c.zip && unzip -o /tmp/tmp.zip -d releases/$(LATEST_RELEASE)/$$c && rm /tmp/tmp.zip \
+	; done
+
 endif
 
 ##@:Docker Images (needs buildx and Qemu)
