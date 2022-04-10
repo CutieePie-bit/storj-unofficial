@@ -35,6 +35,9 @@ LATEST_RELEASE := v1.52.2
 	  )
 
 #--------Use BuildX with QEMU overlay to allow multi architecture builds, to ensure full ARM support when built on X64 - if building on ARM things might break (tm)
+# apt-get install qemu binfmt-support qemu-user-static
+# docker run --rm --privileged multiarch/qemu-user-static --reset -p yes 
+#
 DOCKER_BUILD := docker buildx build \
         --build-arg=TAG=${TAG} --build-arg=RELVER=${LATEST_RELEASE}
 
