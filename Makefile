@@ -28,20 +28,21 @@ endif
 
 #--------GitRepo for pull images
 GIT_REPO := "storj/storj"
-LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
+LATEST_RELEASE := v1.52.2
+#LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
     		grep '"tag_name":' | \
     		sed -E 's/.*"([^"]+)".*/\1/' \
 	  )
 
 #--------Use BuildX with QEMU overlay to allow multi architecture builds, to ensure full ARM support when built on X64 - if building on ARM things might break (tm)
 DOCKER_BUILD := docker buildx build \
-        --build-arg TAG=${TAG}
+        --build-arg=TAG=${TAG} --build-arg=RELVER=${LATEST_RELEASE}
 
 DOCKER_BUILD_ARCH32 := docker buildx build --platform linux/arm/v6  \
-        --build-arg TAG=${TAG}
+        --build-arg=TAG=${TAG} --build-arg=RELVER=${LATEST_RELEASE}
 
 DOCKER_BUILD_ARCH64 := docker buildx build --platform linux/arm64/v8  \
-        --build-arg TAG=${TAG}
+        --build-arg=TAG=${TAG} --build-arg=RELVER=${LATEST_RELEASE}
 
 .DEFAULT_GOAL := help
 .PHONY: help
@@ -145,6 +146,6 @@ bin-clean-all: ## WARNING - this will remove all local binary releases
 
 .PHONY: clean-images
 clean-images: ## Purge docker images from local build environment
-        -docker rmi ${DOCKER_NAMESPACE}/multinode${DOCKER_EXT}:${TAG}-${LATEST_RELEASE}${CUSTOMTAG}
-        -docker rmi ${DOCKER_NAMESPACE}/storagenode${DOCKER_EXT}:${TAG}-${LATEST_RELEASE}${CUSTOMTAG}
+        -docker rmi ${DOCKER_NAMESPACE}/multinode${DOCKER_EXT}:${TAG}-${LATEST_RELEASE}${CUSTOMTAG}*
+        -docker rmi ${DOCKER_NAMESPACE}/storagenode${DOCKER_EXT}:${TAG}-${LATEST_RELEASE}${CUSTOMTAG}*
 
