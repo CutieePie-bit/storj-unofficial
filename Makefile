@@ -2,6 +2,7 @@ GO_VERSION ?= 1.17.5
 GOOS ?= linux
 GOARCH ?= amd64
 GOPATH ?= $(shell go env GOPATH)
+LATEST_TAG := latest
 NODE_VERSION ?= 16.11.1
 COMPOSE_PROJECT_NAME := ${TAG}-$(shell git rev-parse --abbrev-ref HEAD)
 BRANCH_NAME ?= $(shell git rev-parse --abbrev-ref HEAD | sed "s!/!-!g")
@@ -28,8 +29,8 @@ endif
 
 #--------GitRepo for pull images
 GIT_REPO := "storj/storj"
-#LATEST_RELEASE := v1.53.1
-LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
+LATEST_RELEASE := v1.53.1
+#LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
     		grep '"tag_name":' | \
     		sed -E 's/.*"([^"]+)".*/\1/' \
 	  )
