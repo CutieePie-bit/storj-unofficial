@@ -28,7 +28,7 @@ endif
 
 #--------GitRepo for pull images
 GIT_REPO := "storj/storj"
-LATEST_RELEASE := v1.56.3
+LATEST_RELEASE := v1.56.4
 #LATEST_RELEASE = $(shell curl --silent "https://api.github.com/repos/$(GIT_REPO)/releases/latest" | \
     		grep '"tag_name":' | \
     		sed -E 's/.*"([^"]+)".*/\1/' \
